@@ -13,7 +13,9 @@ if __name__ == "__main__":
         .getOrCreate()
     spark.sparkContext.setLogLevel("WARN")
     text_file = spark.sparkContext.textFile("E:\\redhaat.txt")
-    counts = text_file.flatMap(lambda line: line.split(" ")) \
+    counts = text_file.flatMap(lambda line: line.split(".")) \
         .map(lambda word: (word, 1)) \
         .reduceByKey(lambda a, b: a + b)
-    print(counts.collect())
+    arr = counts.collect()
+    for i in arr:
+        print(i)

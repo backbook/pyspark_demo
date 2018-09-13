@@ -12,7 +12,7 @@ if __name__ == "__main__":
         .appName("PythonPi")\
         .getOrCreate()
     spark.sparkContext.setLogLevel("WARN")
-    text_file = spark.sparkContext.textFile("E:\\redhaat.txt")
+    text_file = spark.sparkContext.textFile("D:\\b.txt")
     counts = text_file.flatMap(lambda line: line.split(".")) \
         .map(lambda word: (word, 1)) \
         .reduceByKey(lambda a, b: a + b)

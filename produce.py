@@ -2,6 +2,7 @@
 from pykafka import KafkaClient
 import codecs
 import logging
+
 logging.basicConfig(level = logging.INFO)
 
 client = KafkaClient(hosts = "127.0.0.1:9092")

@@ -3,7 +3,7 @@
 
 from faker import Faker
 import happybase
-
+import pymysql
 
 
 import sys
@@ -32,8 +32,22 @@ sys.stdout.write(x+'/n')
 fake=Faker(locale='zh_CN')
 #/Users/backbook/data/txt/sudent.data
 for i in range(10000):
-    data = str(i) + "|" + fake.name() + "|" + fake.phone_number()+ "|" + fake.company() + "|" + fake.address()
+    data = str(i) + "|" + fake.name() + "|" + fake.phone_number()+ "|" + fake.company() + "|" + fake.address() + "|"+fake.add_provider()
     with open("/Users/backbook/data/txt/sudent.data",'a+',encoding='utf-8') as studentFile:
         studentFile.writelines(data+"\n")
 
 studentFile.close()
+
+
+#以下是执行的数据库操作，mysql的方式
+# 创建连接
+conn = pymysql.connect(host="127.0.0.1", port=3306, user='root', passwd='Server2008!', db='StructruedStreaming', charset='utf8mb4')
+print(conn)
+
+# 创建游标(查询数据返回为元组格式)
+# cursor = conn.cursor()
+
+# 创建游标(查询数据返回为字典格式)
+cursor = conn.cursor(pymysql.cursors.DictCursor)
+
+
